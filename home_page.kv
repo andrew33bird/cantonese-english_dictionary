@@ -1,0 +1,19 @@
+<home_page>:
+    orientation: 'vertical'
+    
+    Label:
+        id: main_label
+        text: 'Import Dictionary'
+    
+    TextInput:
+        id: dict_file
+        text: 'cantoneseclass101_mywordbank_2020-04-21.xml'
+        size_hint_y: None
+        height: 50
+        multiline: False
+    Button:
+        id: load_xml
+        text: 'Load File'
+        size_hint_y: None
+        height: 50
+        on_release: root.load_xml(dict_file)

@@ -1,4 +1,15 @@
+from kivy.app import App
+
+from kivy.uix.boxlayout import BoxLayout
+from kivy.uix.button import Button
+from kivy.uix.label import Label
+from kivy.uix.textinput import TextInput
+
+from kivy.lang.builder import Builder
+
 import xml.etree.ElementTree as et
+
+Builder.load_file('home_page.kv')
 
 class dict_entry:
     def __init__(self, chinese, jyutping, english, part_speech, labels):
@@ -40,9 +51,26 @@ def import_xml(filename):
     
     return words
     
+class home_page(BoxLayout):
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        
+    def load_xml(self, text_box):
+        words = import_xml(text_box.text)
+        
+        disp_text = 'Number of Dictionary Items: ' + str(len(words)) + '\n\n'
+        disp_text += words[0].jyutping + '\n'
+        disp_text += words[0].english + '\n'
+        disp_text += words[0].part_speech + '\n'
+        
+        self.ids.main_label.text = disp_text
+    
+class dictionaryApp(App):
+    title = 'Andrew\'s Cantonese/English Dictionary App!!!'
+    
+    def build(self):
+        return home_page()
+    
 if __name__ == '__main__':
-    
-    words = import_xml('cantoneseclass101_mywordbank_2020-04-21.xml')
-    
-    for i in range(len(words)):
-        print('\t' + words[i].jyutping)
+
+    dictionaryApp().run()
