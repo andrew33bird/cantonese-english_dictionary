@@ -1,19 +1,39 @@
 <home_page>:
     orientation: 'vertical'
     
-    Label:
-        id: main_label
-        text: 'Import Dictionary'
-    
-    TextInput:
-        id: dict_file
-        text: 'cantoneseclass101_mywordbank_2020-04-21.xml'
+    BoxLayout:
         size_hint_y: None
-        height: 50
-        multiline: False
-    Button:
-        id: load_xml
-        text: 'Load File'
-        size_hint_y: None
-        height: 50
-        on_release: root.load_xml(dict_file)
+        height: root.widget_height
+        orientation: 'horizontal'
+        Button:
+            id: settings_btn
+            size_hint_x: None
+            width: root.widget_height
+        TextInput:
+            id: search_input
+            multiline: False
+        Button:
+            id: search_btn
+            size_hint_x: None
+            width: root.widget_height
+            on_release: root.entry_search(search_input)
+            
+    TabbedPanel:
+        pos_hint: {'center_x': 0.5, 'center_y': 0.5}
+        tab_pos: 'bottom_mid'
+        do_default_tab: False
+        tab_height: root.widget_height
+        tab_width: root.tab_width
+        
+        TabbedPanelItem:
+            id: search_tab
+            text: 'Search'
+            Label:
+                id: search_tab_label
+                text: 'Enter search'
+                
+        TabbedPanelItem:
+            id: browse_tab
+            text: 'Browse'
+            Label:
+                text: 'Browse tab active'
