@@ -33,6 +33,7 @@ def import_xml(filename):
         root = tree.getroot()
     
     words = []
+    all_labels = []
     for i in range(len(root)):
         chinese = ''
         jyutping = ''
@@ -50,11 +51,32 @@ def import_xml(filename):
             elif child.tag == 'Class':
                 part_speech = child.text
             elif child.tag == 'labels':
-                labels.append(child.text)
-                
+                labels = sort_labels(child.text)
+                for j in range(len(labels)):
+                    if not labels[j] in all_labels:
+                        all_labels.append(labels[j])
+
         words.append(dict_entry(chinese, jyutping, english, part_speech, labels))
     
-    return words
+    return {'words': words, 'labels': all_labels}
+    
+def sort_labels(label_string):
+    if label_string == None:
+        return []
+    labels = []
+    temp_label = ''
+    for i in range(len(label_string)):
+        if label_string[i] == ',':
+            if temp_label != '':
+                labels.append(temp_label.lstrip())
+                temp_label = ''
+        else:
+            temp_label += label_string[i]
+    
+    if temp_label != '':
+        labels.append(temp_label.lstrip())
+    
+    return labels
     
 class home_page(BoxLayout):
     from display_settings import (widget_height, tab_width)
@@ -62,7 +84,17 @@ class home_page(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         
-        self.words = import_xml('word_bank.xml')
+        temp = import_xml('word_bank.xml')
+        self.words = temp['words']
+        self.labels = temp['labels']
+        print(self.labels)
+        print(len(self.labels))
+        
+        temp_text = ''
+        for i in range(len(self.labels)):
+            temp_text += self.labels[i] + '\n'
+            
+        self.ids.browse_tab_label.text = temp_text
     
     def entry_search(self, input):
         search_text = input.text.lower()
