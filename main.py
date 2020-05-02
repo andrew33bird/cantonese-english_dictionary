@@ -1,17 +1,17 @@
 from kivy.app import App
 
 from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.gridlayout import GridLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.tabbedpanel import TabbedPanel
-from kivy.uix.scrollview import ScrollView
 
 from kivy.lang.builder import Builder
 from kivy.core.window import Window
 
 from display_settings import x, y
+
+from scroll_list_widget import Scroll_List
 
 import xml_file_functions as xml_func
 
@@ -31,17 +31,9 @@ class home_page(BoxLayout):
         temp_text = ''
         for i in range(len(self.labels)):
             temp_text += self.labels[i] + '\n'
-            
-        layout = GridLayout(cols=1, spacing=10,size_hint_y=None)
         
-        layout.bind(minimum_height=layout.setter('height'))
-        
-        for i in range(len(self.words)):
-            layout.add_widget(Button(text=self.words[i].jyutping, size=(50, 25), size_hint=(1,None)))
-        
+        browse_scroll = Scroll_List(self.words, english_lead=False)
 
-        browse_scroll = ScrollView()
-        browse_scroll.add_widget(layout)
         self.ids.browse_tab.add_widget(browse_scroll)
     
     def entry_search(self, input):

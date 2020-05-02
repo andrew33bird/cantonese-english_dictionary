@@ -1,0 +1,20 @@
+<Scroll_List>:
+    
+    GridLayout:
+        id: layout
+        cols: 1
+        spacing: 5
+        size_hint_y: None
+    
+<Row_Button>:
+    orientation: 'horizontal'
+    size_hint_y: None
+    height: root.widget_height
+    
+    Button:
+        id: left_col
+        state: right_col.state
+        
+    Button:
+        id: right_col
+        state: left_col.state
