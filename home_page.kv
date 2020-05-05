@@ -47,9 +47,30 @@
             background_color: root.color_tab_normal if self.state=='normal' else root.color_tab_down
             color: root.color_tab_text_normal if self.state=='normal' else root.color_tab_text_down
             font_size: root.font_header_normal
-            Label:
-                id: search_tab_label
-                text: 'Enter search'
+            
+            BoxLayout:
+                orientation: 'vertical'
+                Button:
+                    size_hint_y: None
+                    height: root.widget_height
+                    text: 'Expand'
+                    on_release: root.adv_expand(adv_box)
+                BoxLayout:
+                    id: adv_box
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: 0
+                    opacity: 0
+                    Label:
+                        text: 'Test 1'
+                    Label:
+                        text: 'Test 2'
+                    Button:
+                        text: 'test button'
+                        on_release: root.test_function()
+                Label:
+                    id: search_tab_label
+                    text: 'Enter search'
                 
         TabbedPanelItem:
             id: browse_tab

@@ -6,6 +6,7 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.tabbedpanel import TabbedPanel
 
+
 from kivy.lang.builder import Builder
 from kivy.core.window import Window
 
@@ -55,6 +56,17 @@ class home_page(BoxLayout):
                 words_found.append(self.words[i])
                 
         self.ids.search_tab_label.text = str(len(words_found)) + ' words found'
+        
+    def adv_expand(self, box):
+        if box.height == self.widget_height:
+            box.height = 0
+            box.opacity = 0
+        else:
+            box.height = self.widget_height
+            box.opacity = 1
+            
+    def test_function(self):
+        print('here')
 
 class dictionaryApp(App):
     title = 'Andrew\'s Cantonese/English Dictionary App!!!'
