@@ -1,5 +1,11 @@
 <home_page>:
     orientation: 'vertical'
+    canvas.before:
+        Color:
+            rgba: root.color_background
+        Rectangle:
+            pos: self.pos
+            size: self.size
     
     BoxLayout:
         size_hint_y: None
@@ -9,15 +15,23 @@
             id: settings_btn
             size_hint_x: None
             width: root.widget_height
+            background_normal: root.settings_btn_normal
+            background_down: root.settings_btn_down
+            border: (0, 0, 0, 0)
         TextInput:
             id: search_input
             multiline: False
+            background_color: root.textbox_color_bckgnd
+            foreground_color: root.textbox_color_text
+            font_size: root.font_normal
         Button:
             id: search_btn
             size_hint_x: None
             width: root.widget_height
             on_release: root.entry_search(search_input)
-            
+            background_normal: root.search_btn_normal
+            background_down: root.search_btn_down
+            border: (0, 0, 0, 0)
     TabbedPanel:
         pos_hint: {'center_x': 0.5, 'center_y': 0.5}
         tab_pos: 'bottom_mid'
@@ -28,6 +42,11 @@
         TabbedPanelItem:
             id: search_tab
             text: 'Search'
+            background_normal: ''
+            background_down: ''
+            background_color: root.color_tab_normal if self.state=='normal' else root.color_tab_down
+            color: root.color_tab_text_normal if self.state=='normal' else root.color_tab_text_down
+            font_size: root.font_header_normal
             Label:
                 id: search_tab_label
                 text: 'Enter search'
@@ -35,4 +54,8 @@
         TabbedPanelItem:
             id: browse_tab
             text: 'Browse'
-            
+            background_normal: ''
+            background_down: ''
+            background_color: root.color_tab_normal if self.state=='normal' else root.color_tab_down
+            color: root.color_tab_text_normal if self.state=='normal' else root.color_tab_text_down
+            font_size: root.font_header_normal

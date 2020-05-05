@@ -20,6 +20,12 @@ Window.size = (x, y)
 
 class home_page(BoxLayout):
     from display_settings import (widget_height, tab_width)
+    from display_settings import (font_header_normal, font_normal)
+    from display_settings import (color_tab_down, color_tab_text_down,
+        color_tab_normal, color_tab_text_normal, textbox_color_bckgnd,
+        textbox_color_text, color_background)
+    from display_settings import (settings_btn_normal, settings_btn_down,
+        search_btn_normal, search_btn_down)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

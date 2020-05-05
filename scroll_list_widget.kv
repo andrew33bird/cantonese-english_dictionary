@@ -3,18 +3,28 @@
     GridLayout:
         id: layout
         cols: 1
-        spacing: 5
+        #spacing: 5
         size_hint_y: None
     
 <Row_Button>:
     orientation: 'horizontal'
     size_hint_y: None
-    height: root.widget_height
+    height: root.scroll_row_height
     
     Button:
         id: left_col
         state: right_col.state
+        on_release: root.test_function(left_col)
+        background_normal: ''
+        background_down: ''
+        color: root.color_text
+        font_size: root.font_normal
         
     Button:
         id: right_col
         state: left_col.state
+        on_release: root.test_function(left_col)
+        background_normal: ''
+        background_down: ''
+        color: root.color_text
+        font_size: root.font_normal
