@@ -11,12 +11,17 @@ screen_x = NumericProperty(x)
 # typical widget height
 height = x / 8
 widget_height = NumericProperty(height)
+small_height = height / 2
+small_widget_height = NumericProperty(small_height)
 # tab width
 tab_x = x / 2
 tab_width = NumericProperty(tab_x)
 # scroll list height
 scroll_height = height / 2
 scroll_row_height = NumericProperty(scroll_height)
+# advanced filters width
+width = x * 2 / 5
+adv_filt_width = NumericProperty(width)
 
 # font sizes
 font_header_normal = NumericProperty(24)
@@ -43,3 +48,5 @@ settings_btn_normal = StringProperty('images/settings_normal.png')
 settings_btn_down = StringProperty('images/settings_down.png')
 search_btn_normal = StringProperty('images/search_normal.png')
 search_btn_down = StringProperty('images/search_down.png')
+adv_filter_colapse = StringProperty('images/adv_filter_colapse.png')
+adv_filter_expand = StringProperty('images/adv_filter_expand.png')

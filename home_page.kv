@@ -50,24 +50,13 @@
             
             BoxLayout:
                 orientation: 'vertical'
-                Button:
-                    size_hint_y: None
-                    height: root.widget_height
-                    text: 'Expand'
-                    on_release: root.adv_expand(adv_box)
-                BoxLayout:
-                    id: adv_box
-                    orientation: 'horizontal'
-                    size_hint_y: None
-                    height: 0
-                    opacity: 0
-                    Label:
-                        text: 'Test 1'
-                    Label:
-                        text: 'Test 2'
-                    Button:
-                        text: 'test button'
-                        on_release: root.test_function()
+                #canvas.before:
+                #    Color:
+                #        rgba: 1,0,0,1
+                #    Rectangle:
+                #        pos: self.pos
+                #        size: self.size
+                AdvFilterDisplay:
                 Label:
                     id: search_tab_label
                     text: 'Enter search'
@@ -80,3 +69,41 @@
             background_color: root.color_tab_normal if self.state=='normal' else root.color_tab_down
             color: root.color_tab_text_normal if self.state=='normal' else root.color_tab_text_down
             font_size: root.font_header_normal
+            
+<AdvFilterDisplay>
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: root.small_widget_height
+        canvas.before:
+            Color:
+                rgba: root.color_background
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Label:
+            # empty space
+        Button:
+            id:adv_filt_btn
+            text: 'Advanced Filters'
+            on_release: root.adv_expand(adv_box)
+            background_normal: root.adv_filter_expand if adv_box.height==0 else root.adv_filter_colapse
+            background_down: root.adv_filter_expand if adv_box.height==0 else root.adv_filter_colapse
+            border: (0, 0, 0, 0)
+            color: root.color_text
+            size_hint_x: None
+            width: root.adv_filt_width
+    BoxLayout:
+        id: adv_box
+        orientation: 'horizontal'
+        size_hint_y: None
+        height: 0
+        opacity: 0
+        Label:
+            text: 'Test 1'
+        Label:
+            text: 'Test 2'
+        Button:
+            text: 'test button'
+            on_release: root.test_function()

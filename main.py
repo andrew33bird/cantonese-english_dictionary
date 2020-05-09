@@ -20,13 +20,14 @@ Builder.load_file('home_page.kv')
 Window.size = (x, y)
 
 class home_page(BoxLayout):
-    from display_settings import (widget_height, tab_width)
+    from display_settings import (widget_height, small_widget_height, tab_width, adv_filt_width)
     from display_settings import (font_header_normal, font_normal)
     from display_settings import (color_tab_down, color_tab_text_down,
         color_tab_normal, color_tab_text_normal, textbox_color_bckgnd,
-        textbox_color_text, color_background)
+        textbox_color_text, color_background, color_text)
     from display_settings import (settings_btn_normal, settings_btn_down,
-        search_btn_normal, search_btn_down)
+        search_btn_normal, search_btn_down, adv_filter_colapse, 
+        adv_filter_expand)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -56,6 +57,30 @@ class home_page(BoxLayout):
                 words_found.append(self.words[i])
                 
         self.ids.search_tab_label.text = str(len(words_found)) + ' words found'
+    '''    
+    def adv_expand(self, box):
+        if box.height == self.widget_height:
+            box.height = 0
+            box.opacity = 0
+        else:
+            box.height = self.widget_height
+            box.opacity = 1
+            
+    def test_function(self):
+        print('here')
+    '''    
+class AdvFilterDisplay(BoxLayout):
+    from display_settings import (widget_height, small_widget_height, tab_width, adv_filt_width)
+    from display_settings import (font_header_normal, font_normal)
+    from display_settings import (color_tab_down, color_tab_text_down,
+        color_tab_normal, color_tab_text_normal, textbox_color_bckgnd,
+        textbox_color_text, color_background, color_text)
+    from display_settings import (settings_btn_normal, settings_btn_down,
+        search_btn_normal, search_btn_down, adv_filter_colapse, 
+        adv_filter_expand)
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
         
     def adv_expand(self, box):
         if box.height == self.widget_height:
